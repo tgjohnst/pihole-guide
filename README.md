@@ -82,7 +82,7 @@ Everything I used can be found on Amazon, Pimoroni (a website/community dedicate
 
 ## 1) Getting your Pi up and running
 
-###A) Formatting the microSD card
+### A) Formatting the microSD card
 
 Before we set up the pi-hole software, let's get the raspberry pi up and running. **If you bought an SD card with Raspbian/NOOBS preloaded on it, skip to substep (B)**
 
@@ -112,7 +112,7 @@ Finally, before you continue, find the MAC address (a unique hardware identifier
 
 ## 2) Configuring your router
 
-####Setting up a Static IP
+#### Setting up a Static IP
 
 For the pi-hole to work properly, it will need a static (unchanging) IP address so that your router and devices know where to find it. If you have never logged into your router, you will need to do so to change these settings. Most routers are accessible by typing either **192.168.1.1** or **192.168.0.1** into your browser's address bar. If you've never logged into your router, you may need to look up the default password, which these days is often attached to your router on a sticker somewhere. 
 
