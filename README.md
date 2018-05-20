@@ -8,11 +8,7 @@ This guide is in the works, but should currently contain all the information you
 
 ### What is a PiHole, and why would anyone want one?
 
-TODO add image here
-
-what is a pihole
-
-what is a raspberry pi
+*I will fill out this section soon.*
 
 ### How difficult is this? Do I need to be a computer/network/linux/hardware expert?
 
@@ -22,7 +18,7 @@ Building a PiHole is super-easy, relatively cheap, and requires no special tools
 
 To understand how the PiHole works, let's dive into what DNS (Domain Name Service) actually means. You're familiar with accessing websites websites by their URL (universal resource locator, e.g. www.google.com) but, under the hood, devices on a network (like the internet) identify themselves using a numeric IP address (e.g. 123.123.12.3) which is used to send and receive traffic to/from that device. DNS is a system that translates URLs into IP addresses so that you don't have to remember the numeric IP for every person/website you want to connect to - see this [comic](https://howdns.works/) or [wikipedia article](https://en.wikipedia.org/wiki/Domain_Name_System) for more details. 
 
-Usually, when your computer wants to contact a website (or server, or ad, or tracker), it sends a DNS request to your internet service provider to tell it where to find what it's looking for. Once you set up a PiHole, it will act as a middleman between you and that translator, forwarding along good requests and blocking any requests that you've blacklisted (ads, etc.).
+Usually, when your computer wants to contact a website (or server, or ad, or tracker), it sends a DNS request to your internet service provider to ask it where to find the content it's looking for. Once you set up a PiHole, it will act as a middleman between you and that translator, forwarding along good requests and blocking any requests that you've blacklisted (ads, etc.).
 
 ##The Quick Summary
 
@@ -171,13 +167,27 @@ I mentioned the reasons you might want to set up your PiHole as a DHCP server in
 1. In your router settings, find the DHCP settings and disable [automatic] DHCP. Save these settings, which may require a router restart.
 2. On your PiHole, open up a web browser. Navigate to `pi.hole` or `127.0.0.1/admin` and log in using the password from step 3. Go to Settings -> DHCP and check the box to enable DHCP. Set the range of addresses to hand out to not overlap with your router's addresses
    - For example, my router hands out 192.168.1.1-192.168.1.254, and the highest IP used before I did this setup was 192.168.1.24. Given that I'd  set my pihole to 192.168.1.111,  I set my the DHCP settings on my pihole to hand out 192.168.1.112-192.168.1.251 so that it wouldn't conflict with any existing IPs during the setup, but there was room for up to 251-112=139 devices on the network.
-3. In the bottom right, click Save. You will then probably be prompted to restart the pihole. 
+3. In the bottom right, click Save. You will then probably be prompted to restart the PiHole. 
 
 ## 6) Accessing the web admin panel and configuring your blocklists
 
+At this point, I would recommend disconnecting/reconnecting or restarting devices on your network.
 
+If you've set up your PiHole correctly, you should now be able to open a web browser on any of your devices (phone, computer, etc.) and go to `pi.hole` to access the admin dashboard. You can log in using the password you got during setup.
 
+- I recommend going to Settings and changing your password!
+
+This dashboard has all sorts of useful information and graphs! It also provides a helpful interface to change settings and add things to the whitelist/blacklist on your pihole. 
+
+The blacklist is a set of sites that will be blocked from your network. If you give the PiHole a set of URLs pointing to blacklists, it will automatically update them each week to stay up to date and block the latest ads. I highly recommend Wally3k's set of approved lists. To add them, visit [this page](https://v.firebog.net/hosts/lists.php?type=tick) and copy all the URLs. Then, in your pi.hole admin page, go to Settings-> BlockLists and paste them all at the bottom of the page, then click `Save and update`
+
+A few of the blacklists are a little aggressive, and Pihole users have assembled a set of commonly blocked domains that you will actually want to let into your network (otherwise, certain sites and software won't work properly e.g. microsoft office, skype). I have created a whitelist that comprises all the commonly whitelisted URLs plus a few I've found while using PiHole - it is located in this Github repository [here](whitelist.txt). You can either (1) paste these URLs into the web admin console one by one, (2) download this file on your PiHole and put it in `/etc/pihole/whitelist.txt` or (3) open up a **Terminal** window on your pihole, type `sudo nano /etc/pihole/whitelist.txt`, paste all the URLs in there, and save the file with `ctrl+o enter enter`. 
+
+## 7 - Living with the Pihole.
+
+I would recommend monitoring your pihole for the first week or so and checking to see if it's blocking or breaking anything you use regularly. You might notice a website returning Site not Found, an app not working, or a piece of software hanging. When you do, you can visit your `pi.hole` dashboard, login, and go to `Query Log`. It will show all the blocked queries in red, and the approved queries in green. You can easily whitelist or blacklist a site using the buttons on that page. 
 
 
 ## 7) (optional) Configuring a screen to display stats
 
+TODO
