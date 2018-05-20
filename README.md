@@ -39,9 +39,15 @@ Everything I used can be found on Amazon, Pimoroni (a website/community dedicate
 
 #### Bare minimum
 
+- Raspberry Pi ($10-35)
+- Power supply ($free-$7.50)
+- Ethernet cable ($free-$3)
+- MicroSD card ($8-15)
+- USB mouse + keyboard and HDMI monitor/TV - you probably have these
+
 **Raspberry Pi**
 
-- There are a few models of Raspberry Pi out there, most of which will work for this project.
+- There are a few models of Raspberry Pi out there, almost all of which will work for this project. The latest model is the Model 3 B+, which has ethernet, USB, wifi, etc. The Model 2 is similar. You can also pick up a Pi Zero, which is tiny and only costs $5, but will need extra adapters to get it hooked up to a network.
 - I used the newest model (Raspberry Pi 3 B+)
 
 **Power supply cable**
