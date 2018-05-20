@@ -37,7 +37,7 @@ Below I've outlined the parts you'll need to set up your PiHole. I've also put i
 
 Everything I used can be found on Amazon, Pimoroni (a website/community dedicated to Raspberry Pi), or Adafruit (a wonderful maker electronics website) but you can also get most of these components for [an order of magnitude] cheaper shipped from overseas if you're willing to wait a few weeks for shipping. When I mention overseas suppliers, I'm talking about sites such as [Monoprice](https://www.monoprice.com/), [DealExtreme](http://www.dx.com), [Alibaba](https://www.alibaba.com/), and [DHGate](https://www.dhgate.com)
 
-#### Bare minimum
+### Bare minimum
 
 - Raspberry Pi ($10-35)
 - Power supply ($free-$7.50)
@@ -70,7 +70,7 @@ Everything I used can be found on Amazon, Pimoroni (a website/community dedicate
 
 - For the initial setup of your pi, you'll want access to a USB mouse + keyboard and a computer monitor or TV that supports HDMI. Once the Pi is set up, you won't need these anymore - you can use the web interface or ssh from another computer/phone/tablet to access and manage settings etc.
 
-#### Optional flair
+### Optional flair
 
 **Case**
 
