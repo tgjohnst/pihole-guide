@@ -76,7 +76,7 @@ Everything I used can be found on Amazon, Pimoroni (a website/community dedicate
 
 - Adding a case makes your Raspberry pi look a lot nicer and protects it from the elements. There are loads of cheap cases ($5-20) available online at Amazon, or even cheaper from overseas suppliers if you're willing to wait for shipping. 
 - Make sure you pick a case that is compatible with the specific raspberry pi model you chose (e.g. most model A cases won't fit a B+). 
-- If you're planning on adding a screen, make sure your case is compatible with your screen - I used a Pibow Coupe TODO case which has a low profile and doesn't get in the way of any of the pins. 
+- If you're planning on adding a screen, make sure your case is compatible with your screen - I used a [Pibow Coupe](https://shop.pimoroni.com/products/pibow-coupe-for-raspberry-pi-3-b-plus) case which has a low profile and doesn't get in the way of any of the pins. 
 
 **Screen**
 
@@ -172,7 +172,7 @@ I mentioned the reasons you might want to set up your PiHole as a DHCP server in
 
 1. In your router settings, find the DHCP settings and disable [automatic] DHCP. Save these settings, which may require a router restart.
 2. On your PiHole, open up a web browser. Navigate to `pi.hole` or `127.0.0.1/admin` and log in using the password from step 3. Go to Settings -> DHCP and check the box to enable DHCP. Set the range of addresses to hand out to not overlap with your router's addresses
-   - For example, my router hands out 192.168.1.1-192.168.1.254, and the highest IP used before I did this setup was 192.168.1.24. Given that I'd  set my pihole to 192.168.1.111,  I set my the DHCP settings on my pihole to hand out 192.168.1.112-192.168.1.251 so that it wouldn't conflict with any existing IPs during the setup, but there was room for up to 251-112=139 devices on the network.
+   - For example, my router hands out 192.168.1.1-192.168.1.254, and the highest IP used before I did this setup was 192.168.1.24. Given that I'd  set my pihole to 192.168.1.111,  I set my the DHCP settings on my pihole to hand out 192.168.1.112-192.168.1.251 so that it wouldn't conflict with any existing IPs during the setup. With that range, there is room for up to 251-112=139 devices on the network.
 3. In the bottom right, click Save. You will then probably be prompted to restart the PiHole. 
 
 ## 6) Accessing the web admin panel and configuring your blocklists
