@@ -20,7 +20,7 @@ To understand how the PiHole works, let's dive into what DNS (Domain Name Servic
 
 Usually, when your computer wants to contact a website (or server, or ad, or tracker), it sends a DNS request to your internet service provider to ask it where to find the content it's looking for. Once you set up a PiHole, it will act as a middleman between you and that translator, forwarding along good requests and blocking any requests that you've blacklisted (ads, etc.).
 
-##The Quick Summary
+## The Quick Summary
 
 I've tried to include a lot of information in the guide below, which might make it seem like a long process, but if you're interested in the tl;dr, it boils down to just a few easy steps:
 
