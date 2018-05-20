@@ -1,4 +1,4 @@
-# Beginner's guide to building a Pi-hole
+# Beginner's guide to building a PiHole
 
 ***Block ads and trackers on every device and regain control of your home network!***
 
@@ -6,7 +6,7 @@ This guide is in the works, but should currently contain all the information you
 
 ## A Brief FAQ
 
-### What is a Pi-hole, and why would anyone want one?
+### What is a PiHole, and why would anyone want one?
 
 TODO add image here
 
@@ -16,39 +16,47 @@ what is a raspberry pi
 
 ### How difficult is this? Do I need to be a computer/network/linux/hardware expert?
 
-Building a pi-hole is super-easy, relatively cheap, and requires no special tools or hardware skills! Some basic command line experience could be helpful, but even if you've never touched a Unix machine before you should be able to get yourself up and running without any issues. The pi-hole community is huge, with tens of thousands of people on the [SubReddit](https://www.reddit.com/r/pihole/) and [Discourse](https://discourse.pi-hole.net/), and there are loads of up-to-date guides and instructions online in case you get stuck. This guide will cover all the basics as well as some of the bells and whistles.
+Building a PiHole is super-easy, relatively cheap, and requires no special tools or hardware skills! Some basic command line experience could be helpful, but even if you've never touched a Unix machine before you should be able to get yourself up and running without any issues. The PiHole community is huge, with tens of thousands of people on the [SubReddit](https://www.reddit.com/r/pihole/) and [Discourse](https://discourse.pi-hole.net/), and there are loads of up-to-date guides and instructions online in case you get stuck. This guide will cover all the basics as well as some of the bells and whistles.
 
 ### How does a DNS sinkhole work, anyway?
 
-TODO
+To understand how the PiHole works, let's dive into what DNS (Domain Name Service) actually means. You're familiar with accessing websites websites by their URL (universal resource locator, e.g. www.google.com) but, under the hood, devices on a network (like the internet) identify themselves using a numeric IP address (e.g. 123.123.12.3) which is used to send and receive traffic to/from that device. DNS is a system that translates URLs into IP addresses so that you don't have to remember the numeric IP for every person/website you want to connect to - see this [comic](https://howdns.works/) or [wikipedia article](https://en.wikipedia.org/wiki/Domain_Name_System) for more details. 
 
-## The Quick Summary
+Usually, when your computer wants to contact a website (or server, or ad, or tracker), it sends a DNS request to your internet service provider to tell it where to find what it's looking for. Once you set up a PiHole, it will act as a middleman between you and that translator, forwarding along good requests and blocking any requests that you've blacklisted (ads, etc.).
 
-I've tried to include a lot of information in the guide below, but if you're interested in the tl;dr, it boils down to just a few easy steps:
+##The Quick Summary
 
-1. Get a Raspberry Pi with the appropriate cables
+I've tried to include a lot of information in the guide below, which might make it seem like a long process, but if you're interested in the tl;dr, it boils down to just a few easy steps:
+
+1. Get a Raspberry Pi and some cables to plug it in
 2. Install Raspbian/NOOBS (Raspberry Pi Linux) on a microSD card and log into the pi
-3. Install pi-hole on the raspberry pi (one command and a quick setup wizard)
-4. Configure your router to use the Pi-hole for DNS queries
-5. Add the appropriate blacklists/whitelists to the Pi-hole to block ads
+3. Configure a couple settings on your router to assign the Pi a static IP
+4. Install `PiHole` on the raspberry pi (one command and a quick setup wizard)
+5. Configure your router to use the PiHole for DNS queries (and optionally DHCP)
+6. Add the appropriate blacklists/whitelists to the PiHole to block ads
 
 ## The Parts
 
-Below I've outlined the parts you'll need to set up your pi-hole. I've also put in an 'optional' section in case you want to go a bit further and add a case, screen, etc. 
+Below I've outlined the parts you'll need to set up your PiHole. I've also put in an 'optional' section in case you want to go a bit further and add a case, screen, etc. 
+
+Everything I used can be found on Amazon, Pimoroni (a website/community dedicated to Raspberry Pi), or Adafruit (a wonderful maker electronics website) but you can also get most of these components for [an order of magnitude] cheaper shipped from overseas if you're willing to wait a few weeks for shipping. When I mention overseas suppliers, I'm talking about sites such as [Monoprice](https://www.monoprice.com/), [DealExtreme](http://www.dx.com), [Alibaba](https://www.alibaba.com/), and [DHGate](https://www.dhgate.com)
 
 #### Bare minimum
 
 **Raspberry Pi**
 
-- There are a few models of Raspberry Pi out there, most of which will work for this project. 
+- There are a few models of Raspberry Pi out there, most of which will work for this project.
+- I used the newest model (Raspberry Pi 3 B+)
 
 **Power supply cable**
 
 - Many phone chargers or microUSB cables will work in a pinch, but most don't put out enough juice for the Pi to operate stably long-term. You'll want to make sure you have a power supply that can provide sufficient voltage/current to the Pi or you could end up putting a lot of stress on the components. 
+- I used [this](https://www.adafruit.com/product/1995) power supply, you can probably find it cheaper at overseas suppliers
 
 **Ethernet cable**
 
-- Though many Raspberry Pis have wireless chips, you'll want to hardwire your pi-hole to your router to make sure it has a fast and stable connection
+- Though many Raspberry Pis have wireless chips, you'll want to hardwire your pi-hole to your router to make sure it has a fast and stable connection.
+- I used a spare CAT5e ethernet cable I had laying around.
 
 **MicroSD card**
 
@@ -64,7 +72,7 @@ Below I've outlined the parts you'll need to set up your pi-hole. I've also put 
 
 **Case**
 
-- Adding a case makes your Raspberry pi look a lot nicer and protects it from the elements. There are loads of cheap cases ($5-20) available online at Amazon, or even cheaper from Chinese suppliers (e.g. [Monoprice](https://www.monoprice.com/), [DealExtreme](http://www.dx.com), [Alibaba](https://www.alibaba.com/), [DHGate](https://www.dhgate.com)) if you're willing to wait for shipping. 
+- Adding a case makes your Raspberry pi look a lot nicer and protects it from the elements. There are loads of cheap cases ($5-20) available online at Amazon, or even cheaper from overseas suppliers if you're willing to wait for shipping. 
 - Make sure you pick a case that is compatible with the specific raspberry pi model you chose (e.g. most model A cases won't fit a B+). 
 - If you're planning on adding a screen, make sure your case is compatible with your screen - I used a Pibow Coupe TODO case which has a low profile and doesn't get in the way of any of the pins. 
 
@@ -78,31 +86,53 @@ Below I've outlined the parts you'll need to set up your pi-hole. I've also put 
 
 ## 1) Getting your Pi up and running
 
-### A) Formatting the microSD card
+###A) Formatting the microSD card
 
-Before we set up the pi-hole software, let's get the raspberry pi up and running. If you bought an SD card with Raspbian/NOOBS preloaded on it, skip to the next step
+Before we set up the pi-hole software, let's get the raspberry pi up and running. **If you bought an SD card with Raspbian/NOOBS preloaded on it, skip to substep (B)**
 
-### B) Logging into your pi
+1. First, you'll want to download either NOOBS or Raspbian .img file from the [Raspberry Pi website](https://www.raspberrypi.org/downloads/). 
+   - I used the Raspbian file. 
+
+2. You'll also want to install software that can write an image to a microSD card. I recommend [Etcher](https://etcher.io/) since it's super easy to use and works on both Mac and PC.
+3. Plug your SD card into your adapter or phone and connect it to your computer.
+   - If you're using an Android phone, drag down the notification bar, click on the **USB Connected** notification,  and enable **USB [mass] storage mode** and your SD card should appear.
+4. Use Etcher or another program to write the .img file to your SD card.
+
+You now have a microSD card ready to go!
+
+### B) Logging into your Raspberry Pi
 
 Insert your microSD card into the slot on the bottom of your Pi. Using the HDMI and USB ports on the pi, connect your monitor, mouse, and keyboard. Then, connect the power cable, and the Pi will turn on. It should take you straight to the desktop after a bit of logging in. The main menu for settings etc. can be found in the top left. Network settings can be found in the top right. You can do some of the setup on wifi, but it's easier if you already have it plugged into your router via ethernet. 
 
-### C) Configuring your pi
+### C) Configuring your Raspberry Pi
 
-All Raspberry Pis come with a default username (pi) and password (raspberry). You'll want to change the password. You can do this by either opening up a **Terminal** window and typing `sudo passwd` then hitting enter, or by going to settings -> raspberry pi settings and changing it there. 
+All Raspberry Pis come with a default username (pi) and password (raspberry). You'll want to change the password. You can do this by either opening up a **Terminal** window and typing `sudo passwd` then hitting enter, or by going to **settings -> raspberry pi settings** and changing it there. 
 
-Depending on your Pi, you'll probably need to change the keyboard layout under Keyboard + Mouse Settings to English (US), otherwise the symbols will be weird.
+Depending on your Pi, you might need to change the keyboard layout under **Keyboard + Mouse Settings** to **English (US)**, otherwise the symbols will be weird.
 
-If you want to be able to control your pi without having a keyboard/monitor connected to it once you've set it up, you'll also need to check the radio button to `enable SSH` in the 4th tab of the raspberry pi settings menu.
+If you want to be able to control your pi without having a keyboard/monitor connected to it once you've set it up, you'll also need to check the radio button to `enable SSH` in the 4th tab of the **raspberry pi settings** menu.
 
-Finally, before you continue, find the MAC address (a unique hardware identifier for your raspberry pi) of your Pi. To do this, start a **Terminal** window
+Finally, before you continue, find the MAC address (a unique hardware identifier for your raspberry pi) of your Pi. To do this, start a **Terminal** window and type `ifconfig`. Assuming you plan to connect your raspberry pi via ethernet - under `eth0` you should see a line that resembles `ether a1:b2:c3:d4:e5:c6` . The stuff after `ether` is the MAC address of the ethernet port - **write that down for later**
 
 ## 2) Configuring your router
 
+####Setting up a Static IP
+
 For the pi-hole to work properly, it will need a static (unchanging) IP address so that your router and devices know where to find it. If you have never logged into your router, you will need to do so to change these settings. Most routers are accessible by typing either **192.168.1.1** or **192.168.0.1** into your browser's address bar. If you've never logged into your router, you may need to look up the default password, which these days is often attached to your router on a sticker somewhere. 
 
-For the purposes of this tutorial, I'm going to assume you want to set up your pi-hole as both a **DNS** server and a **DHCP** server. **DHCP** is a system whereby a server on your network dynamically assigns IP addresses to every device on your network when it connects. On most home networks, the router serves as the DHCP server. There are a few advantages to setting up your pi-hole as a DHCP, the largest of which is that it will be able to tell which queries are coming from which device. Without setting this up, the pi-hole will see most queries as coming from your router, so you won't be able to tell which ads are being blocked on your laptop vs. your phone vs. your PS4, etc. *If you want to set up your pi-hole as a dhcp server, you will need to disable DHCP on your router. Let's do this after Step 3*
+The next steps will vary based on their manufacturer, but what you want to find is something labeled along the lines of either **static IP** or **reserved IP**. This will usually be nestled in something along the lines of Advanced Settings, Setup, LAN setup, or DHCP setup. 
 
-The next steps will vary based on their manufacturer, but what you want to find is something labeled along the lines of either **static IP** or **reserved IP**. This will usually be nestled in something along the lines of Advanced Settings, Setup, LAN setup, or DHCP setup. TODO
+- A brief aside: **DHCP** is a system whereby a server on your network dynamically assigns IP addresses to 		every device on your network when it connects. On most home networks, the router serves as the DHCP server. Usually, routers will be configured to hand out DHCP leases from 192.168.1.1 -> 192.168.1.254. 
+
+You'll want to give your pi a memorable static IP address and, for easier setup, one that doesn't fall in the range of IPs that your router has already assigned. Assuming you don't have over 100 devices already connected, anything over 192.168.x.100 should be good. I chose **192.168.1.111** as my pihole's IP. 
+
+In the settings mentioned above, assign the pihole to that IP address and use the MAC address you wrote down in step 1. You will probably need to save the settings, whereupon your router will either automatically restart or do something in the background. To check if this worked, you can now restart/login your pi, open a terminal window, and type `ifconfig` - the IP address should be the one you assigned in your router.
+
+Before you finish this step, write down the IP address of your router! Your Pi should automatically detect it, but it's good to have just in case.
+
+#### On setting up Pi-hole DHCP (later!)
+
+For the purposes of this tutorial, I'm going to assume you want to set up your pi-hole as both a **DNS** server and a **DHCP** (dynamic host configuration protocol) server. There are a few advantages to setting up your pi-hole as a DHCP server, the largest of which is that it will be able to tell which queries are coming from which device. Without setting this up, your devices will contact your router, which then forwards the requests to the Pi-hole: the pi-hole will see most queries as coming from your router, so you won't be able to tell which ads are being blocked on your laptop vs. your phone vs. your PS4, etc. *If you want to set up your pi-hole as a DHCP server (recommended), you will need to disable DHCP on your router. Let's do this after Step 3*
 
 ## 3) Installing and configuring Pi-hole
 
@@ -121,18 +151,33 @@ The folks maintaining pi-hole have made installation super easy! It will only ta
    5. Pi-hole now asks if you want to use the current network settings as the **Static IP Address**. If you've configured your router properly in the previous step, you should see your chosen static/reserved IP under **IP Address**. and the router's IP address under **Gateway**. If not, you can change your IP to the desired Pi-hole IP.
    6. The next step will check if you want to enable the **web admin interface**. This is password-protected allows you to easily view traffic, whitelist and blacklist sites, and change settings from any machine on your network. I recommend keeping it **On**
    7. The Pi-hole will ask you if you want to **log queries**. Again, I recommend keeping this on, as it will allow you to keep a log of which domains your devices are trying to reach over time and enable rich tracking.
-   8. This should be the end! If you've followed all the steps, your pi-hole should now be filtering any queries directed to it. 
+   8. Your PiHole will now reiterate all the settings you just gave it. *It will also tell you the default password for the web interface. Write this down!* *Don't worry, if you forget it, it will also be printed out in the terminal after you finish the setup.*
+   9. This should be the end! If you've followed all the steps, your pi-hole should now be filtering any queries directed to it. 
 
-   Now it's time to go back to the router and do some configuration
+   I would recommend restarting the pi now (`sudo reboot` in terminal) to make sure everything is running properly.
 
-## 4) Setting up your pi-hole as a DHCP server (optional)
+   Now it's time to go back to the router and do some configuration!
 
-TODO
+## 4) Pointing your router to your pi-hole for DNS
 
-## 5) Configuring your blocklists
+Now that the PiHole is on and set up, you need to tell your router to point every other device to the Pi-Hole when it sends a domain resolution request. Somewhere in your router settings (usually something like "internet settings"), you will see a place where you can fill in the address of a **DNS** server. Often, routers are configured to automatically fetch a DNS server from your internet service provider. \
 
-TODO
+Instead of having the router automatically find a DNS Server, in the DNS server field fill in the **IP address** (e.g. 192.168.1.111 in my case) that you assigned to the Pi-hole in step 3. If there are 2 DNS server fields available, either leave the second one blank or fill in the Pihole IP again (if you leave another DNS, the router might default to that one when the Pihole blocks an ad, rendering your pihole ineffective). Make sure to save the settings - you may need to restart the router
 
-## 6) Configuring a screen to display stats (optional)
+## 5) (optional but recommended) Setting up your PiHole as a DHCP server
 
-TODO
+I mentioned the reasons you might want to set up your PiHole as a DHCP server in step (3). To do this, you'll need to disable DHCP on your router and enable DHCP on your PiHole. 
+
+1. In your router settings, find the DHCP settings and disable [automatic] DHCP. Save these settings, which may require a router restart.
+2. On your PiHole, open up a web browser. Navigate to `pi.hole` or `127.0.0.1/admin` and log in using the password from step 3. Go to Settings -> DHCP and check the box to enable DHCP. Set the range of addresses to hand out to not overlap with your router's addresses
+   - For example, my router hands out 192.168.1.1-192.168.1.254, and the highest IP used before I did this setup was 192.168.1.24. Given that I'd  set my pihole to 192.168.1.111,  I set my the DHCP settings on my pihole to hand out 192.168.1.112-192.168.1.251 so that it wouldn't conflict with any existing IPs during the setup, but there was room for up to 251-112=139 devices on the network.
+3. In the bottom right, click Save. You will then probably be prompted to restart the pihole. 
+
+## 6) Accessing the web admin panel and configuring your blocklists
+
+
+
+
+
+## 7) (optional) Configuring a screen to display stats
+
