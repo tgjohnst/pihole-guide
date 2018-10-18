@@ -196,4 +196,21 @@ I would recommend monitoring your pihole for the first week or so and checking t
 
 ## 7) (optional) Configuring a screen to display stats
 
-TODO
+If you acquired a screen for your pi-hole, you probably want it to display relevant status and activity for your pihole. Luckily, this is easy!
+
+Though pihole has a built-in status dashboard (based on the *chronometer* project), it is relatively barebones. Jim McKenna and others have created a much more fully-featured dashboard called [PADD](https://github.com/jpmck/PADD) (formerly *chronometer2*) which is configurable and displays much more information to the user in a friendly format. To install this, simply `git clone https://github.com/jpmck/PADD`  and then run PADD/padd.sh. Since you probably will disconnect your mouse and keyboard from the pihole for "headless" use, you're going to want to set it up such that PADD will run on the screen whenever the pihole is restarted. To do this, edit your bashrc file (`~/.bashrc`) to include the following code (replacing `./padd.sh` with wherever the path to your copy of padd.sh is located:
+
+```
+# If we’re on the Pi screen (ssh is xterm)
+if [ "$TERM" == "linux" ] ; then
+  while :
+  do
+    ./padd.sh
+    sleep 1
+  done
+fi
+```
+
+Then, simply restart the pi.
+
+If the PADD display takes up too much or too little of your screen, you can (and should) configure the terminal text size to make the best use of the display. Do this via `sudo dpkg-reconfigure console-setup` in the terminal and play with sizes until you find the one best for your display. If PADD detects fewer than a certain amount of text will fit in the screen, it will switch to "mini" mode, which displays less information, so smaller is generally better to a certain extent. 
