@@ -1,0 +1,5 @@
+## Setting up an Amazon Dash button to disable pihole
+
+This will be filled in shortly :)
+
+https://github.com/Nekmo/amazon-dash
