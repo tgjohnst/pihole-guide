@@ -4,6 +4,8 @@
 
 This guide is in the works, but should currently contain all the information you need to get up and running. 
 
+![PiHole image](pihole.jpg)
+
 ## A Brief FAQ
 
 ### What is a PiHole, and why would anyone want one?
@@ -214,3 +216,5 @@ fi
 Then, simply restart the pi.
 
 If the PADD display takes up too much or too little of your screen, you can (and should) configure the terminal text size to make the best use of the display. Do this via `sudo dpkg-reconfigure console-setup` in the terminal and play with sizes until you find the one best for your display. If PADD detects fewer than a certain amount of text will fit in the screen, it will switch to "mini" mode, which displays less information, so smaller is generally better to a certain extent. 
+
+## 8) Configuring an amazon dash button to disable the pihole on-demand (optional)
