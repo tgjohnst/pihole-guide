@@ -218,3 +218,27 @@ Then, simply restart the pi.
 If the PADD display takes up too much or too little of your screen, you can (and should) configure the terminal text size to make the best use of the display. Do this via `sudo dpkg-reconfigure console-setup` in the terminal and play with sizes until you find the one best for your display. If PADD detects fewer than a certain amount of text will fit in the screen, it will switch to "mini" mode, which displays less information, so smaller is generally better to a certain extent. 
 
 ## 8) Configuring an amazon dash button to disable the pihole on-demand (optional)
+
+I configured an amazon dash button to disable the pihole on command, so I don't have to go to the pihole web console and login if I need to make a quick exception for something that's being blocked but that I don't want to whitelist. It was super easy to set up, and now that Amazon is phasing out their hardware dash buttons, might as well put them to use! I used one that was tied to a defunct product, so it won't accidentally order something when I press it. There are other ways to workaround this too, simply leave the product choice for the button empty and it won't order something.
+
+For setup, I followed instructions at the following on my pihole: https://github.com/Nekmo/amazon-dash
+
+```
+sudo pip3 install amazon-dash 
+sudo python3 -m amazon_dash.install
+sudo amazon-dash discovery
+```
+
+The last command above will give you the MAC address of your dash button in purple text when it is pressed. Then, edit the file `/etc/amazon-dash.yml` using a text editor (e.g. `sudo nano /etc/amazon-dash.yml`) to include the following:
+```
+# amazon-dash.yml
+# ---------------
+settings:
+  delay: 10 # Seconds. Minimum time that must pass between pushes.
+devices:
+  MAC_ADDRESS_HERE:
+    name: My dash button # Whatever button name you want
+    user: pi  # System user. Necessary if it is executed as root
+    cmd: pihole disable 2m  # 2m is 2 minutes, can be changed to seconds, minutes, hours etc
+```
+Now, when the button is pressed, the pihole will be disabled for a bit! easy!
