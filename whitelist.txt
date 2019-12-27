@@ -227,3 +227,16 @@ medium.com
 weblb-wg.dual-gslb.spotify.com
 mobile.pipe.aria.microsoft.com
 www.howtogeek.com
+cdn.fbsbx.com
+graph.oculus.com
+bit.ly
+etl.tindersparks.com
+fivethirtyeight.com
+heartbeat.dm.origin.com
+best.aliexpress.com
+forms.office.com
+society6.com
+www.aliexpress.com
+bugmenot.com
+forms.gle
+www.squaretrade.com
