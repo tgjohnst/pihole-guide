@@ -106,7 +106,7 @@ You now have a microSD card ready to go!
 
 ### B) Logging into your Raspberry Pi
 
-Insert your microSD card into the slot on the bottom of your Pi. Using the HDMI and USB ports on the pi, connect your monitor, mouse, and keyboard. Then, connect the power cable, and the Pi will turn on. It should take you straight to the desktop after a bit of logging in. The main menu for settings etc. can be found in the top left. Network settings can be found in the top right. You can do some of the setup on wifi, but it's easier if you already have it plugged into your router via ethernet. 
+Insert your microSD card into the slot on the bottom of your Pi. Using the HDMI and USB ports on the pi, connect your monitor, mouse, and keyboard. Then, connect the power cable, and the Pi will turn on. It should take you straight to the desktop after a bit of logging in (default user=pi, password=raspberry). The main menu for settings etc. can be found in the top left. Network settings can be found in the top right. You can do some of the setup on wifi, but it's easier if you already have it plugged into your router via ethernet. 
 
 ### C) Configuring your Raspberry Pi
 
@@ -156,7 +156,7 @@ The folks maintaining pi-hole have made installation super easy! It will only ta
    6. The next step will check if you want to enable the **web admin interface**. This is password-protected allows you to easily view traffic, whitelist and blacklist sites, and change settings from any machine on your network. I recommend keeping it **On**
    7. The Pi-hole will ask you if you want to **log queries**. Again, I recommend keeping this on, as it will allow you to keep a log of which domains your devices are trying to reach over time and enable rich tracking.
    8. Your PiHole will now reiterate all the settings you just gave it. *It will also tell you the default password for the web interface. Write this down!* *Don't worry, if you forget it, it will also be printed out in the terminal after you finish the setup.*
-   9. This should be the end! If you've followed all the steps, your pi-hole should now be filtering any queries directed to it. 
+   9. If you've followed all the steps, your pi-hole should now be filtering any queries directed to it. Now we have to set up the router to do that.
 
    I would recommend restarting the pi now (`sudo reboot` in terminal) to make sure everything is running properly.
 
@@ -216,6 +216,8 @@ fi
 Then, simply restart the pi.
 
 If the PADD display takes up too much or too little of your screen, you can (and should) configure the terminal text size to make the best use of the display. Do this via `sudo dpkg-reconfigure console-setup` in the terminal and play with sizes until you find the one best for your display. If PADD detects fewer than a certain amount of text will fit in the screen, it will switch to "mini" mode, which displays less information, so smaller is generally better to a certain extent. 
+
+Raspberry pis are often configured to sleep/screensave after a certain amount of time. If you notice that your screen goes black overnight or after 24 hours, add ‘consoleblank=0’ to the end of */boot/cmdline.txt*
 
 ## 8) Configuring an amazon dash button to disable the pihole on-demand (optional)
 
