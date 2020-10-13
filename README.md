@@ -215,7 +215,22 @@ If the PADD display takes up too much or too little of your screen, you can (and
 
 Raspberry pis are often configured to sleep/screensave after a certain amount of time. If you notice that your screen goes black overnight or after 24 hours, add ‘consoleblank=0’ to the end of */boot/cmdline.txt*
 
-## 8) Configuring an amazon dash button to disable the pihole on-demand (optional)
+## 8) Configuring buttons and devices to easily control, monitor, and disable pihole remotely
+Sometimes, you don't want to have to go visit your pihole dashboard and log in just to quickly disable or whitelist something. There are plenty of ways to do so!
+
+Most of these will require your PiHole API key. To generate your API key (token), log in to the admin page (/admin) and go to Settings -> API/Web interface. The Show API token button in the bottom-left will show you your API key.
+
+### Browser extension
+Switch for PiHole 
+Chrome: https://chrome.google.com/webstore/detail/switch-for-pihole/ngoafjpapneaopfkpboebcahajopcifi?hl=en
+Firefox: https://addons.mozilla.org/en-US/firefox/addon/switch-for-pihole/
+
+### Mobile App
+Flutterhole for Android: https://play.google.com/store/apps/details?id=sterrenburg.github.flutterhole&hl=en_US&gl=US
+PiHole Remote for iOS: https://apps.apple.com/us/app/pi-hole-remote/id1515445551
+Pi Stats for iOS (with homescreen widget: https://apps.apple.com/us/app/pi-stats-mobile/id1523024268
+
+### Amazon Dash Button
 
 *note - this has stopped working as of mid-2020. Not sure if my dash button is dead or if something else has changed.*
 
