@@ -2,15 +2,11 @@
 
 ***Block ads and trackers on every device and regain control of your home network!***
 
-This guide is in the works, but should currently contain all the information you need to get up and running. 
+This guide is in the works, but should currently contain all the information you need to get up and running. This was written in 2018 but should still be applicable. If you encounter any issues, please add them in the issues section and I will update the guide! 
 
 ![PiHole image](pihole.jpg)
 
 ## A Brief FAQ
-
-### What is a PiHole, and why would anyone want one?
-
-*I will fill out this section soon.*
 
 ### How difficult is this? Do I need to be a computer/network/linux/hardware expert?
 
@@ -220,6 +216,8 @@ If the PADD display takes up too much or too little of your screen, you can (and
 Raspberry pis are often configured to sleep/screensave after a certain amount of time. If you notice that your screen goes black overnight or after 24 hours, add ‘consoleblank=0’ to the end of */boot/cmdline.txt*
 
 ## 8) Configuring an amazon dash button to disable the pihole on-demand (optional)
+
+*note - this has stopped working as of mid-2020. Not sure if my dash button is dead or if something else has changed.*
 
 I configured an amazon dash button to disable the pihole on command, so I don't have to go to the pihole web console and login if I need to make a quick exception for something that's being blocked but that I don't want to whitelist. It was super easy to set up, and now that Amazon is phasing out their hardware dash buttons, might as well put them to use! I used one that was tied to a defunct product, so it won't accidentally order something when I press it. There are other ways to workaround this too, simply leave the product choice for the button empty and it won't order something.
 
