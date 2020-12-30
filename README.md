@@ -185,6 +185,8 @@ This dashboard has all sorts of useful information and graphs! It also provides 
 
 The blacklist is a set of sites that will be blocked from your network. If you give the PiHole a set of URLs pointing to blacklists, it will automatically update them each week to stay up to date and block the latest ads. I highly recommend Wally3k's set of approved lists. To add them, visit [this page](https://v.firebog.net/hosts/lists.php?type=tick) and copy all the URLs. Then, in your pi.hole admin page, go to Settings-> BlockLists and paste them all at the bottom of the page, then click `Save and update`
 
+You can also find the exact set I've accumulated over the years [here](adlist.txt)
+
 A few of the blacklists are a little aggressive, and Pihole users have assembled a set of commonly blocked domains that you will actually want to let into your network (otherwise, certain sites and software won't work properly e.g. microsoft office, skype). I have created a whitelist that comprises all the commonly whitelisted URLs plus a few I've found while using PiHole - it is located in this Github repository [here](whitelist.txt). You can either (1) paste these URLs into the web admin console one by one, (2) download this file on your PiHole and put it in `/etc/pihole/whitelist.txt` or (3) open up a **Terminal** window on your pihole, type `sudo nano /etc/pihole/whitelist.txt`, paste all the URLs in there, and save the file with `ctrl+o enter enter`. 
 
 ## 7 - Living with the Pihole.
