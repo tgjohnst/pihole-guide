@@ -113,7 +113,7 @@ i1.ytimg.com
 manifest.googlevideo.com
 redirector.googlevideo.com
 s.youtube.com
-s2.youtube.com 
+s2.youtube.com
 s.ytimg.com
 video-stats.l.google.com
 www.youtube-nocookie.com
@@ -140,7 +140,6 @@ api.ipify.org
 bing.com
 brightcove.net
 bufferapp.com
-crisp.chat
 d2c8v52ll5s99u.cloudfront.net
 d2gatte9o95jao.cloudfront.net
 display.ugc.bazaarvoice.com
@@ -230,7 +229,6 @@ www.howtogeek.com
 cdn.fbsbx.com
 graph.oculus.com
 bit.ly
-etl.tindersparks.com
 fivethirtyeight.com
 heartbeat.dm.origin.com
 best.aliexpress.com
@@ -240,3 +238,7 @@ www.aliexpress.com
 bugmenot.com
 forms.gle
 www.squaretrade.com
+www.propublica.org
+app.emby.media
+www.opensubtitles.org
+static.opensubtitles.org
