@@ -120,15 +120,15 @@ Finally, before you continue, find the MAC address (a unique hardware identifier
 
 ## 2) Configuring your router
 
-#### Setting up a Static IP
+#### Setting up a Static/Reserved IP
 
-For the pi-hole to work properly, it will need a static (unchanging) IP address so that your router and devices know where to find it. If you have never logged into your router, you will need to do so to change these settings. Most routers are accessible by typing either **192.168.1.1** or **192.168.0.1** into your browser's address bar. If you've never logged into your router, you may need to look up the default password, which these days is often attached to your router on a sticker somewhere. 
+For the pi-hole to work properly, it will need an unchanging IP address so that your router and devices know where to find it. If you have never logged into your router, you will need to do so to change these settings. Most routers are accessible by typing either **192.168.1.1** or **192.168.0.1** into your browser's address bar. If you've never logged into your router, you may need to look up the default password, which these days is often attached to your router on a sticker somewhere. 
 
 The next steps will vary based on their manufacturer, but what you want to find is something labeled along the lines of either **static IP** or **reserved IP**. This will usually be nestled in something along the lines of Advanced Settings, Setup, LAN setup, or DHCP setup. 
 
 - A brief aside: **DHCP** is a system whereby a server on your network dynamically assigns IP addresses to 		every device on your network when it connects. On most home networks, the router serves as the DHCP server. Usually, routers will be configured to hand out DHCP leases from 192.168.1.1 -> 192.168.1.254. 
 
-You'll want to give your pi a memorable static IP address and, for easier setup, one that doesn't fall in the range of IPs that your router has already assigned. Assuming you don't have over 100 devices already connected, anything over 192.168.x.100 should be good. I chose **192.168.1.111** as my pihole's IP. 
+You'll want to give your pi a memorable static IP address and, for easier setup, one that doesn't fall in the range of IPs that your router has already assigned. Assuming you don't have over 100 devices already connected, anything over 192.168.x.*100* should be good. I chose **192.168.1.111** as my pihole's IP. 
 
 In the settings mentioned above, assign the pihole to that IP address and use the MAC address you wrote down in step 1. You will probably need to save the settings, whereupon your router will either automatically restart or do something in the background. To check if this worked, you can now restart/login your pi, open a terminal window, and type `ifconfig` - the IP address should be the one you assigned in your router.
 
@@ -174,7 +174,7 @@ I mentioned the reasons you might want to set up your PiHole as a DHCP server in
 
 1. In your router settings, find the DHCP settings and disable [automatic] DHCP. Save these settings, which may require a router restart.
 2. On your PiHole, open up a web browser. Navigate to `pi.hole` or `127.0.0.1/admin` and log in using the password from step 3. Go to Settings -> DHCP and check the box to enable DHCP. Set the range of addresses to hand out to not overlap with your router's addresses
-   - For example, my router hands out 192.168.1.1-192.168.1.254, and the highest IP used before I did this setup was 192.168.1.24. Given that I'd  set my pihole to 192.168.1.111,  I set my the DHCP settings on my pihole to hand out 192.168.1.112-192.168.1.251 so that it wouldn't conflict with any existing IPs during the setup. With that range, there is room for up to 251-112=139 devices on the network.
+   - For example, my router hands out 192.168.1.1-192.168.1.254, and the highest IP used before I did this setup was 192.168.1.24. Given that I'd  set my pihole to 192.168.1.111,  I set my the DHCP settings on my pihole to hand out 192.168.1.112-192.168.1.251 so that it wouldn't conflict with any existing IPs during the brief setup window. With that range, there is room for up to ~136 devices simultaneously active on the network.
 3. In the bottom right, click Save. You will then probably be prompted to restart the PiHole. 
 
 ## 6) Accessing the web admin panel and configuring your blocklists
