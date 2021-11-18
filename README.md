@@ -29,6 +29,10 @@ I've tried to include a lot of information in the guide below, which might make 
 5. Configure your router to use the PiHole for DNS queries (and optionally DHCP)
 6. Add the appropriate blacklists/whitelists to the PiHole to block ads
 
+## Assumptions
+
+This guide assumes you're setting up your raspberry pi on a standard home network that uses a single consumer-grade router or mesh setup. If you have a more complex network setup, use multiple VLANs, or run your own DNS/DHCP, this will not cover the necessary setup steps.
+
 ## The Parts
 
 Below I've outlined the parts you'll need to set up your PiHole. I've also put in an 'optional' section in case you want to go a bit further and add a case, screen, etc. 
