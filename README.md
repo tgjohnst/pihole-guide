@@ -65,8 +65,8 @@ Everything I used can be found on Amazon, Pimoroni (a website/community dedicate
 **MicroSD card**
 
 - The raspberry pi has no storage, so you'll need a microSD card that's at least 4GB to hold the operating system and data. Though you can potentially get by with 4GB, I recommend 8GB-16GB so that you have space to store logs and data.
-- You'll also need something that can read/write MicroSD cards. If you have a current/old Android phone, it can most likely read/write SD cards (I used my old Motorola droid). Most laptops have an SD card slot.  If not, readers are available online for a few dollars e.g. this one TODO or this one TODO.
-- If you don't want to go through the trouble of creating the SD card, cards are available (e.g. TODO TODO TODO) which are pre-loaded with the raspberry pi operating system for about the same price as a card itself.
+- You'll also need something that can read/write MicroSD cards. If you have a current/old Android phone, it can most likely read/write SD cards (I used my old Motorola droid). Most laptops have an SD card slot.  If not, readers are available online for a few dollars.
+- If you don't want to go through the trouble of creating the SD card, cards are available which are pre-loaded with the raspberry pi operating system for about the same price as a card itself.
 
 **USB mouse/keyboard and monitor**
 
@@ -76,17 +76,18 @@ Everything I used can be found on Amazon, Pimoroni (a website/community dedicate
 
 **Case**
 
-- Adding a case makes your Raspberry pi look a lot nicer and protects it from the elements. There are loads of cheap cases ($5-20) available online at Amazon, or even cheaper from overseas suppliers if you're willing to wait for shipping. 
+- Adding a case makes your Raspberry Pi look a lot nicer and protects it from the elements. There are loads of cheap cases ($5-20) available online at Amazon, or even cheaper from overseas suppliers if you're willing to wait for shipping. 
 - Make sure you pick a case that is compatible with the specific raspberry pi model you chose (e.g. most model A cases won't fit a B+). 
 - If you're planning on adding a screen, make sure your case is compatible with your screen - I used a [Pibow Coupe](https://shop.pimoroni.com/products/pibow-coupe-for-raspberry-pi-3-b-plus) case which has a low profile and doesn't get in the way of any of the pins. 
 
 **Screen**
 
 - If you plan to keep your Pi-hole somewhere you can see it, a screen can give you at-a-glance blocking statistics, and it also looks friggin cool. There are tons of screen options for the Pi which will work with Pi-hole, from 2-line LCD screens to full 800x480 touchscreen displays. Prices vary from $3-$60 depending on the screen.
+- I used a [Pimoroni Hyperpixel](https://www.adafruit.com/product/3578) which is *definitely* overkill for a pihole
 
 **Stand**
 
-- If you're keeping your pi on a desk or table and plan to install a screen, it can be nice to have a stand so you can glance at it easily (most screens don't have the best viewing angle). A simple phone stand can be had for cents online (things like [this](https://www.amazon.com/gp/product/B01HPI5AM2/) should work, and can be had for pennies on the dollar if you're willing to wait for shipping from China e.g. [Monoprice](https://www.monoprice.com/), [DealExtreme](http://www.dx.com), [Alibaba](https://www.alibaba.com/), [DHGate](https://www.dhgate.com))
+- If you're keeping your pi on a desk or table and plan to install a screen, it can be nice to have a stand so you can glance at it easily (most screens don't have the best viewing angle). A simple phone stand can be found cheaply online (things like [this](https://www.amazon.com/gp/product/B01HPI5AM2/), and can be had for pennies on the dollar from overseas suppliers.
 
 ## 1) Getting your Pi up and running
 
@@ -98,8 +99,7 @@ Before we set up the pi-hole software, let's get the raspberry pi up and running
    - I used the Raspbian file. 
 
 2. You'll also want to install software that can write an image to a microSD card. I recommend [Etcher](https://etcher.io/) since it's super easy to use and works on both Mac and PC.
-3. Plug your SD card into your adapter or phone and connect it to your computer.
-   - If you're using an Android phone, drag down the notification bar, click on the **USB Connected** notification,  and enable **USB [mass] storage mode** and your SD card should appear.
+3. Plug your SD card into your adapter or phone and connect it to your computer (you may need to switch it to mass storage mode).
 4. Use Etcher or another program to write the .img file to your SD card.
 
 You now have a microSD card ready to go!
@@ -237,7 +237,7 @@ Flutterhole for Android: https://play.google.com/store/apps/details?id=sterrenbu
 
 PiHole Remote for iOS: https://apps.apple.com/us/app/pi-hole-remote/id1515445551
 
-Pi Stats for iOS (with homescreen widget: https://apps.apple.com/us/app/pi-stats-mobile/id1523024268
+Pi Stats for iOS (with homescreen widget): https://apps.apple.com/us/app/pi-stats-mobile/id1523024268
 
 
 ### Amazon Dash Button
