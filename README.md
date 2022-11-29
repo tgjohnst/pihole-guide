@@ -6,6 +6,8 @@ This guide is in the works, but should currently contain all the information you
 
 ![PiHole image](pihole.jpg)
 
+### A note: Given that this guide is starting to show its age, I highly recommend https://www.crosstalksolutions.com/the-worlds-greatest-pi-hole-and-unbound-tutorial-2023/ as an updated and extremely thorough guide that probably is better than the one below if you intend to actually follow it step by step for setup. The below may still be helpful in figuring out what, why, and how :)
+
 ## A Brief FAQ
 
 ### How difficult is this? Do I need to be a computer/network/linux/hardware expert?
